@@ -1,5 +1,8 @@
-package com.anupama.sinha;
+package com.anupama.sinha.service.serviceimpl;
 
+import com.anupama.sinha.model.entity.Post;
+import com.anupama.sinha.model.entity.User;
+import com.anupama.sinha.service.SocialMediaService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -8,17 +11,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Service
-public class SocialMediaService {
+public class SocialMediaServiceImpl implements SocialMediaService {
 
     Set<User> userList = Collections.newSetFromMap(new ConcurrentHashMap<>());
     Map<Integer, Set<String>> postsByUserId = new ConcurrentHashMap<>();
     Map<String, Post> globalPosts = new ConcurrentHashMap<>();
 
-    Set<User> getAllUsers() {
+    @Override
+    public Set<User> getAllUsers() {
         return userList;
     }
 
-    User addFollowing(Integer originalUser, Integer toFollow){
+    @Override
+    public User addFollowing(Integer originalUser, Integer toFollow){
         User u1 = findUserById(originalUser);
         User u2 = findUserById(toFollow);
 
@@ -27,7 +32,8 @@ public class SocialMediaService {
         return u1;
     }
 
-    User removeFollowing(Integer originalUser, Integer toFollow){
+    @Override
+    public User removeFollowing(Integer originalUser, Integer toFollow){
         User u1 = findUserById(originalUser);
         User u2 = findUserById(toFollow);
 
@@ -36,7 +42,8 @@ public class SocialMediaService {
         return u1;
     }
 
-    User addPost(Integer userId, String content) {
+    @Override
+    public User addPost(Integer userId, String content) {
 
         Post post = new Post(userId, content);
         String postId = post.getPostId();
@@ -54,7 +61,8 @@ public class SocialMediaService {
         return user;
     }
 
-    Set<Post> getAllPost(Integer userId) {
+    @Override
+    public Set<Post> getAllPost(Integer userId) {
         User user = findUserById(userId);
         Set<Integer> userFollowingIds = user.getFollowingId();
         userFollowingIds.add(userId);

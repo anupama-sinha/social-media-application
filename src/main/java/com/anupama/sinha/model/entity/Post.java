@@ -1,4 +1,4 @@
-package com.anupama.sinha;
+package com.anupama.sinha.model.entity;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class Post implements Comparable<Post> {
 
     }
 
-    Post(Integer userId, String content) {
+    public Post(Integer userId, String content) {
         this.userId = userId;
         this.content = content;
         this.postedOn = new Timestamp(System.currentTimeMillis());

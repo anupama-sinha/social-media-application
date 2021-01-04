@@ -1,8 +1,8 @@
-package com.anupama.sinha;
+package com.anupama.sinha.dto;
 
 public class PostDTO {
-    Integer userId;
-    String content;
+    public Integer userId;
+    public String content;
 
     public Integer getUserId() {
         return userId;

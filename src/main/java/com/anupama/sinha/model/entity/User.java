@@ -1,6 +1,5 @@
-package com.anupama.sinha;
+package com.anupama.sinha.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,30 +21,30 @@ public class User {
 
     }
 
-    User(Integer id) {
+    public User(Integer id) {
         this.id = id;
         this.followers = Collections.newSetFromMap(new ConcurrentHashMap<User, Boolean>());
         this.following = Collections.newSetFromMap(new ConcurrentHashMap<User, Boolean>());
         this.postIds = ConcurrentHashMap.newKeySet();
     }
 
-    boolean addFollower(User user){
+    public boolean addFollower(User user){
         return this.followers.add(user);
     }
 
-    boolean removeFollower(User user) {
+    public boolean removeFollower(User user) {
         return this.followers.remove(user);
     }
 
-    boolean addFollowing(User user){
+    public boolean addFollowing(User user){
         return this.following.add(user);
     }
 
-    boolean removeFollowing(User user){
+    public boolean removeFollowing(User user){
         return this.following.remove(user);
     }
 
-    boolean addPost(String postId) {
+    public boolean addPost(String postId) {
         return postIds.add(postId);
     }
 
