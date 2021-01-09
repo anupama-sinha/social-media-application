@@ -89,7 +89,7 @@ public class SocialMediaServiceImpl implements SocialMediaService {
     }
 
     @PostConstruct
-    private void initializeUsers() {
+    public void initializeUsers() {
         if(userList.isEmpty()) {
             User user1 = new User(1);
             User user2 = new User(2);
