@@ -1,5 +1,6 @@
 package com.anupama.sinha.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,10 +10,9 @@ import java.util.stream.Collectors;
 
 public class User {
     private Integer id;
-    @JsonIgnore
+
     private Set<User> followers;
 
-    @JsonIgnore
     private Set<User> following;
 
     private Set<String> postIds;
@@ -48,12 +48,12 @@ public class User {
         return postIds.add(postId);
     }
 
-    @JsonProperty("followers")
+    @JsonGetter("followers")
     public Set<Integer> getFollowersId(){
         return followers.parallelStream().map(User::getId).collect(Collectors.toSet());
     }
 
-    @JsonProperty("following")
+    @JsonGetter("following")
     public Set<Integer> getFollowingId(){
         return following.parallelStream().map(User::getId).collect(Collectors.toSet());
     }

@@ -23,21 +23,6 @@ public class SocialMediaServiceImplTest {
     @InjectMocks
     private SocialMediaServiceImpl mockSocialMediaService;
 
-    @Spy
-    private Set<User> spyUsers;
-
-    @Mock
-    private User mockUser1;
-
-    @Mock
-    private User mockUser2;
-
-    @Mock
-    private Set<User> mockFollowers;
-
-    @Mock
-    private Set<User> mockFollowing;
-
     @BeforeEach
     void setUp() {
         mockSocialMediaService.initializeUsers();
