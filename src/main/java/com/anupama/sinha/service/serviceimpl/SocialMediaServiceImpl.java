@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class SocialMediaServiceImpl implements SocialMediaService {
 
-    Set<User> userList = Collections.newSetFromMap(new ConcurrentHashMap<>());
-    Map<Integer, Set<String>> postsByUserId = new ConcurrentHashMap<>();
-    Map<String, Post> globalPosts = new ConcurrentHashMap<>();
+    final Set<User> userList = ConcurrentHashMap.newKeySet();
+    final Map<Integer, Set<String>> postsByUserId = new ConcurrentHashMap<>();
+    final Map<String, Post> globalPosts = new ConcurrentHashMap<>();
 
     @Override
     public Set<User> getAllUsers() {
@@ -69,6 +69,12 @@ public class SocialMediaServiceImpl implements SocialMediaService {
 
         Set<String> postIds = getPostIds(userFollowingIds);
         return findPostsById(postIds);
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userList.stream().filter(user -> user.getId().equals(id)).findAny()
+                .orElseThrow(() ->  new RuntimeException(("User Not Found")));
     }
 
     private Set<String> getPostIds(Set<Integer> userIds){

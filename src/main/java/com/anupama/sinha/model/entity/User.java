@@ -17,15 +17,25 @@ public class User {
 
     private Set<String> postIds;
 
-    User(){
+    private User(){
 
     }
 
     public User(Integer id) {
         this.id = id;
-        this.followers = Collections.newSetFromMap(new ConcurrentHashMap<User, Boolean>());
-        this.following = Collections.newSetFromMap(new ConcurrentHashMap<User, Boolean>());
+        this.followers = ConcurrentHashMap.newKeySet();
+        this.following = ConcurrentHashMap.newKeySet();
         this.postIds = ConcurrentHashMap.newKeySet();
+    }
+
+    @JsonGetter("followers")
+    public Set<Integer> getFollowersId(){
+        return followers.parallelStream().map(User::getId).collect(Collectors.toSet());
+    }
+
+    @JsonGetter("following")
+    public Set<Integer> getFollowingId(){
+        return following.parallelStream().map(User::getId).collect(Collectors.toSet());
     }
 
     public boolean addFollower(User user){
@@ -46,16 +56,6 @@ public class User {
 
     public boolean addPost(String postId) {
         return postIds.add(postId);
-    }
-
-    @JsonGetter("followers")
-    public Set<Integer> getFollowersId(){
-        return followers.parallelStream().map(User::getId).collect(Collectors.toSet());
-    }
-
-    @JsonGetter("following")
-    public Set<Integer> getFollowingId(){
-        return following.parallelStream().map(User::getId).collect(Collectors.toSet());
     }
 
     public Integer getId() {

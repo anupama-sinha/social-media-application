@@ -9,7 +9,7 @@ public class Post implements Comparable<Post> {
     Integer userId;
     String postId;
 
-    Post(){
+    private Post(){
 
     }
 

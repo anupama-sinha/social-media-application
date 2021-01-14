@@ -26,6 +26,11 @@ public class UserController {
         return socialMediaService.getAllUsers();
     }
 
+    @GetMapping("/users/{id}")
+    User getUserById(@PathVariable("id") Integer id) {
+        return socialMediaService.getUserById(id);
+    }
+
     @GetMapping("/users/{id}/posts")
     Set<Post> getAllPost(@PathVariable("id") Integer id){
         return socialMediaService.getAllPost(id);

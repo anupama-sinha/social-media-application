@@ -54,7 +54,16 @@ public class SocialMediaApplicationITTest {
         User user = this.restTemplate
                 .getForObject("http://localhost:" + port + "/users/1/follow/5", User.class);
 
+        User user2 = this.restTemplate
+                .getForObject("http://localhost:" + port + "/users/5", User.class);
+
         assertEquals(1, user.getId());
+        assertEquals(1,user.getFollowing().size());
+        assertEquals(true, user.getFollowingId().contains(5));
+
+        assertEquals(true, user2.getFollowersId().contains(1));
+
+
     }
 
     @Test
@@ -62,7 +71,13 @@ public class SocialMediaApplicationITTest {
         User user = this.restTemplate
                 .getForObject("http://localhost:" + port + "/users/1/unfollow/5", User.class);
 
+        User user2 = this.restTemplate
+                .getForObject("http://localhost:" + port + "/users/5", User.class);
+
         assertEquals(user.getId(), 1);
         assertEquals(0, user.getFollowing().size());
+        assertEquals(false, user.getFollowingId().contains(5));
+
+        assertEquals(false, user2.getFollowersId().contains(1));
     }
 }

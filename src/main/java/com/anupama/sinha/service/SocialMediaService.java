@@ -9,18 +9,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public interface SocialMediaService {
-    Set<User> userList = Collections.newSetFromMap(new ConcurrentHashMap<>());
-    Map<Integer, Set<String>> postsByUserId = new ConcurrentHashMap<>();
-    Map<String, Post> globalPosts = new ConcurrentHashMap<>();
 
-    public Set<User> getAllUsers();
+    Set<User> getAllUsers();
 
-    public User addFollowing(Integer originalUser, Integer toFollow);
+    User addFollowing(Integer originalUser, Integer toFollow);
 
-    public User removeFollowing(Integer originalUser, Integer toFollow);
+    User removeFollowing(Integer originalUser, Integer toFollow);
 
-    public User addPost(Integer userId, String content);
+    User addPost(Integer userId, String content);
 
-    public Set<Post> getAllPost(Integer userId);
+    Set<Post> getAllPost(Integer userId);
 
+    User getUserById(Integer id);
 }
