@@ -6,6 +6,14 @@ A small social media application focusing on Java Collections
 
 > java -jar target/social-media-application-1.0-SNAPSHOT.jar
 
+### Architectural Viewpoints
+* @JsonGetter : To avoid exposure of list of followers and followings. To avoid accidental edit/delete
+* Equals & Hashcode IDs kept same to get correct result
+* Integer being Immutable kept as Id in equals and hashcode
+* List of Followers & Followees can be simultaneously edited, So either could use synchronized block, but that maintains total data block. Instead to achieve line level lock, Concurrent Hash Map's concept is used. Concurrent Hash Set using the ID as keys while boolean as value in new KeySetFromMap or proper values in newKeySet
+* Parameterized Constructor used based on input values 
+* Default constructor private : Only to use for JSON
+
 ### API Endpoint Contracts
 |HTTP Method|Endpoint URL|
 |--|--|
