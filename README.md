@@ -28,7 +28,8 @@ Please refer entire [POSTMAN Collection JSON](https://github.com/anupama-sinha/s
 
 Alternatively, please use [Swagger for Social Media Application](http://localhost:8081/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
 
+Please, refer Jacoco(Test Coverage Reports) in path(/social-media-application/target/site/jacoco/index.html) after running mvn clean verify
+
 ### Future Scope(To be done)
-* Test Coverage Reports using Jacoco Plugin
 * Integration of Logging Framework
 * Exception Handling for all scenarios
